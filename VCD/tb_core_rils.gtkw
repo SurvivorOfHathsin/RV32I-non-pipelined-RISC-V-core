@@ -1,0 +1,36 @@
+[*]
+[*] GTKWave Analyzer v3.3.48 (w)1999-2013 BSI
+[*] Wed Aug 12 20:17:40 2026
+[*]
+[dumpfile] "C:\Users\User\Documents\GitHub\RV32I-non-pipelined-RISC-V-core\VCD\tb_core_rils.vcd"
+[dumpfile_mtime] "Wed Aug 12 19:56:31 2026"
+[dumpfile_size] 5763
+[savefile] "C:\Users\User\Documents\GitHub\RV32I-non-pipelined-RISC-V-core\tb_core_rils.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-14.442168 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_core_rils.
+[sst_width] 197
+[signals_width] 158
+[sst_expanded] 1
+[sst_vpaned_height] 153
+@28
+tb_core_rils.clk
+tb_core_rils.rst
+@22
+tb_core_rils.dut.pc[31:0]
+tb_core_rils.dut.instr[31:0]
+tb_core_rils.dut.rdata1[31:0]
+tb_core_rils.dut.rdata2[31:0]
+tb_core_rils.dut.imm[31:0]
+tb_core_rils.dut.alu_result[31:0]
+tb_core_rils.dut.dmem_rdata[31:0]
+tb_core_rils.dut.wb_data[31:0]
+tb_core_rils.dut.rd[4:0]
+@28
+tb_core_rils.dut.reg_write
+@29
+tb_core_rils.dut.mem_write
+[pattern_trace] 1
+[pattern_trace] 0
