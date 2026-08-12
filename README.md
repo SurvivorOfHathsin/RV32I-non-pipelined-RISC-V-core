@@ -6,47 +6,6 @@ The processor implements the datapath and control logic required to fetch, decod
 
 ## Architecture
 
-The processor consists of the following major blocks:
-
-
-                 ┌───────────────┐
-                 │ Program       │
-                 │ Counter       │
-                 └───────┬───────┘
-                         │
-                         ▼
-                 ┌───────────────┐
-                 │ Instruction   │
-                 │ Memory        │
-                 └───────┬───────┘
-                         │
-                         ▼
-                 ┌───────────────┐
-                 │ Instruction   │
-                 │ Decode        │
-                 └───────┬───────┘
-                         │
-          ┌──────────────┼──────────────┐
-          ▼              ▼              ▼
-     ┌─────────┐   ┌──────────┐   ┌──────────┐
-     │ RegFile │   │ Imm Gen  │   │ Control  │
-     └────┬────┘   └────┬─────┘   └──────────┘
-          │             │
-          └──────┬──────┘
-                 ▼
-            ┌─────────┐
-            │   ALU   │
-            └────┬────┘
-                 │
-          ┌──────┴──────┐
-          ▼             ▼
-     ┌─────────┐   ┌──────────┐
-     │ Data    │   │ Writeback│
-     │ Memory  │   │   MUX    │
-     └─────────┘   └────┬─────┘
-                         │
-                         ▼
-                    Register File
 ![RISC-V Datapath](Images/Datapath.png)
 
 ## Supported Instructions
