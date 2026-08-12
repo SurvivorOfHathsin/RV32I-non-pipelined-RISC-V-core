@@ -47,7 +47,7 @@ The processor consists of the following major blocks:
                          │
                          ▼
                     Register File
-![alt text]({01C60C48-566E-41C3-84D2-2F03D40BBE6F}.png)
+![RISC-V Datapath](Images/Datapath.png)
 
 ## Supported Instructions
 
@@ -146,7 +146,7 @@ PASS: x2 = 42 (expected 42)
 ### Waveform
 
 The GTKWave output demonstrates the instruction execution and datapath operation, including:
-
+![GTKWave waveform](Images/waveform.png)
 * Program counter progression
 * Instruction decoding
 * ALU operation
