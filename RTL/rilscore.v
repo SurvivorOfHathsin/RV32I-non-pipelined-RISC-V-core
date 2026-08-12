@@ -1,4 +1,4 @@
-module RI_core(
+module RILS_core(
     input clk,rst
 );
 wire [31:0] pc, pc_next, instr;
@@ -20,18 +20,18 @@ wire [2:0] imm_sel;
 wire mem_read, mem_write, branch, jump;
 wire [1:0] wb_sel;
 control ctrl(
-     .opcode(opcode),
+    .opcode(opcode),
     .funct3(funct3),
     .funct7(funct7),
     .reg_write(reg_write),
     .alu_src(alu_src),
     .mem_read(mem_read),
-   .mem_write(mem_write),
-   .branch(branch),
+    .mem_write(mem_write),
+    .branch(branch),
     .jump(jump),
     .wb_sel(wb_sel),
     .alu_op(alu_op),
-   .imm_sel(imm_sel)
+    .imm_sel(imm_sel)
 );
 
 //regfile
@@ -56,9 +56,7 @@ immgen ig0(
 );
 
 //ALU source mux
-wire [31:0] alu_b=alu_src?imm:rdata2;
-
-//ALU
+wire [31:0] alu_b   = alu_src ? imm : rdata2;
 wire [31:0]alu_result;
 wire zero;
 alu alu0(
@@ -69,6 +67,17 @@ alu alu0(
     .zero(zero)
 );
 
-//write back from only alu
-assign wb_data=alu_result;
+//Data Memory
+wire [31:0]dmem_rdata;
+dmem dmem0(
+    .clk(clk),
+    .we(mem_write),
+    .addr(alu_result),
+    .wdata(rdata2),
+    .funct3(funct3),
+    .rdata(dmem_rdata)
+);
+
+//write back from alu/ data mem
+assign wb_data=wb_sel?dmem_rdata:alu_result;
 endmodule
