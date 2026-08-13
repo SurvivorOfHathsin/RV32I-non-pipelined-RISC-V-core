@@ -54,23 +54,33 @@ The processor implements the datapath and control logic required to fetch, decod
 ```text
 RV32I-non-pipelined-RISC-V-core/
 │
-├── RTL/
-│   ├── RILS_core.v
+├── RTL:
 │   ├── ALU
 │   ├── Control Unit
 │   ├── Register File
 │   ├── Immediate Generator
 │   ├── Instruction Memory
 │   ├── Data Memory
-│   └── Instruction Fetch
+│   ├── Instruction Fetch
+│   ├── Program Counter
+│   └── rilscoretb.v
 │
-├── Testbenches/
-│   └── tb_core_rils.v
+├── Testbenches:
+│   └── alutb.v
+│   └── controltb.v
+│   └── ifetchtb.v
+│   └── pctb.v
+│   └── regfiletb.v
+│   └── rilscoretb.v
 │
-├── VCD/
+├── VCD:
 │   ├── tb_core_rils.vcd
 │   ├── tb_core_rils.gtkw
 │   └── waveform.pdf
+│
+├──Images:
+│   ├── Datapath.png
+│   └── waveform.png
 │
 └── program1.hex
 ```
