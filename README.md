@@ -63,7 +63,7 @@ RV32I-non-pipelined-RISC-V-core/
 │   ├── Data Memory
 │   ├── Instruction Fetch
 │   ├── Program Counter
-│   └── rilscoretb.v
+│   └── rilscore.v
 │
 ├── Testbenches:
 │   └── alutb.v
