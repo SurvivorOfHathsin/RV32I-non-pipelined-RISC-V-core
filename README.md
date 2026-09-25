@@ -1,4 +1,9 @@
 # RV32I Non-Pipelined RISC-V Core
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Verilog](https://img.shields.io/badge/Language-Verilog%202012-blue.svg)](#)
+[![Simulator](https://img.shields.io/badge/Simulation-Icarus%20Verilog-green.svg)](https://github.com/steveicarus/iverilog)
+[![Waveform](https://img.shields.io/badge/Waveform-GTKWave-orange.svg)](https://gtkwave.sourceforge.net/)
+[![ISA](https://img.shields.io/badge/ISA-RV32I%20Base-red.svg)](https://riscv.org/)
 
 A single-cycle, non-pipelined 32-bit RISC-V processor core designed from scratch in Verilog HDL.
 
