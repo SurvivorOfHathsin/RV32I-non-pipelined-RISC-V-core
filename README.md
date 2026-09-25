@@ -156,3 +156,8 @@ From the repository root:
 To view the generated simulation waveform in GTKWave:
 
     gtkwave tb_riscv_core.vcd
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
