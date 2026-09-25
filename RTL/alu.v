@@ -3,10 +3,13 @@ module alu (
     input  [31:0] b,
     input  [3:0] aluop,
     output reg [31:0] result,
-    output wire zero
+    output wire zero,
+    output wire alu_lt,
+    output wire alu_ltu
 );
 wire [4:0]shiftamt =b[4:0];
-
+assign alu_lt  = ($signed(a) < $signed(b));
+assign alu_ltu = (a < b);
 always@(*)begin
     case (aluop)
     4'b0000: result =a+b;

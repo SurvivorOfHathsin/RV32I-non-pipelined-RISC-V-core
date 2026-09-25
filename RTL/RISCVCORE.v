@@ -1,8 +1,8 @@
-module RILS_core(
+module RISCVCORE(
     input clk,rst
 );
 wire [31:0] pc, pc_next, instr;
-assign pc_next=pc+32'd4;
+
 instfetch if0(clk,rst,pc_next,pc,instr);
 
 //decoding
@@ -57,14 +57,18 @@ immgen ig0(
 
 //ALU source mux
 wire [31:0] alu_b   = alu_src ? imm : rdata2;
+wire alu_src_a = (opcode == 7'b0010111);
+wire [31:0] alu_a = alu_src_a ? pc : rdata1;
 wire [31:0]alu_result;
-wire zero;
+wire zero,alu_lt, alu_ltu;
 alu alu0(
-    .a(rdata1),
+    .a(alu_a),
     .b(alu_b),
     .aluop(alu_op),
     .result(alu_result),
-    .zero(zero)
+    .zero(zero),
+    .alu_lt(alu_lt),
+    .alu_ltu(alu_ltu)
 );
 
 //Data Memory
@@ -77,7 +81,33 @@ dmem dmem0(
     .funct3(funct3),
     .rdata(dmem_rdata)
 );
+//Branch unit
+wire branch_taken;
+wire [31:0] branch_target;
 
-//write back from alu/ data mem
-assign wb_data=wb_sel?dmem_rdata:alu_result;
+branch_unit bu0 (
+    .funct3(funct3),
+    .zero(zero),
+    .alu_lt(alu_lt),
+    .alu_ltu(alu_ltu),
+    .pc(pc),
+    .b_imm(imm),
+    .branch_taken(branch_taken),
+    .branch_target(branch_target)
+);
+// PC Update Logic
+wire pc_sel_branch = branch & branch_taken;
+wire [31:0] jal_target  = pc + imm;
+wire [31:0] jalr_target = {alu_result[31:1], 1'b0};
+
+assign pc_next = (opcode == 7'b1100111) ? jalr_target :      // JALR
+                 (jump)                 ? jal_target :       // JAL
+                 (pc_sel_branch)        ? branch_target :    // Taken Branch
+                                          (pc + 32'd4);      // Default PC + 4
+//write back 
+assign wb_data = (wb_sel == 2'b00) ? alu_result :
+                 (wb_sel == 2'b01) ? dmem_rdata :
+                 (wb_sel == 2'b10) ? (pc + 32'd4) :
+                 (wb_sel == 2'b11) ? imm :
+                                     32'b0;
 endmodule

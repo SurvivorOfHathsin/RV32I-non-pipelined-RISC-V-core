@@ -69,9 +69,9 @@ always @(*) begin
             alu_src=1; mem_write=1; imm_sel=3'b001; alu_op=4'b0000;
         end
 
-        BR:  begin
-             branch=1; imm_sel=3'b010;alu_op=(funct3==3'h4||funct3==3'h5)?4'b0101:4'b0001; 
-        end
+        BR: begin
+            branch = 1; alu_src = 0; imm_sel = 3'b010; alu_op = 4'b0001; 
+end
         JAL:  begin 
             reg_write=1; jump=1; wb_sel=2'b10; imm_sel=3'b100;
         end
